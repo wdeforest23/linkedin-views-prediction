@@ -14,7 +14,7 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 
 ## Dataset
 ### Source
-- **Dataset**: LinkedIn Job Postings (2023–2024) from Kaggle.
+- **Dataset**: [LinkedIn Job Postings (2023–2024) from Kaggle](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings/data)
 - **Size**: 124,000+ job postings.
 - **Features**:
   - **Job Attributes**: Title, description, salary, location, work type, remote allowance, skills, benefits.
@@ -126,4 +126,12 @@ Test data was modified by changing features such as remote allowance and salary 
 - Joon Park
 - Christina Song
 
-Feel free to reach out with questions or suggestions!
+## Dataset License
+The dataset used in this project is the [LinkedIn Job Postings Dataset (2023–2024)]([https://www.kaggle.com/your-dataset-link](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings/data)), licensed under the [Creative Commons Attribution-ShareAlike 4.0 International (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/).
+
+### Attribution
+- **Dataset Author(s)**: [Arsh Koneru, Zoey Yu Zou]
+- **Link to Dataset**: [[URL to Kaggle Dataset](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings/data)]
+- **License**: [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/)
+
+Any modifications to the dataset for this project have been noted in the repository.
