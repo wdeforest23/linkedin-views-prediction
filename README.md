@@ -8,20 +8,22 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 ---
 
 ## Business Problem
+
+![Business Problem](images/Business%20Problem.jpg)
+
 - **Challenge**: Employers struggle to make their job postings stand out in a highly competitive online market.
 - **Key Metric**: Views per posting are a critical indicator of reach and engagement.
 - **Goal**: Build a predictive model to estimate job post views and identify actionable strategies to enhance visibility and engagement.
 
 ---
 
-## Dataset
+## Data
 ### Source
 - **Dataset**: [LinkedIn Job Postings (2023–2024) from Kaggle](https://www.kaggle.com/datasets/arshkon/linkedin-job-postings/data)
 - **Size**: 124,000+ job postings.
 - **Features**:
-  - **Job Attributes**: Title, description, salary, location, work type, remote allowance, skills, benefits.
-  - **Company Attributes**: Size, industry, follower count, location.
-  - **Engagement Metrics**: Views and applications.
+  - **Job Attributes**: Title, description, salary, location, work type, remote allowance, skills, benefits + more
+  - **Company Attributes**: Size, industry, follower count, HQ location + more
 
 ### Why This Dataset?
 - Reflects real-time trends in the job market.
@@ -30,10 +32,13 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 ---
 
 ## Data Preparation
+### Database Diagram
+![LinkedIn Job Posting Database Diagram](images\db_diagram.png)
+
 ### Key Steps
 1. **Data Ingestion**:
-   - Loaded multiple CSV files into Databricks.
-   - Converted PySpark DataFrames to Pandas for easier manipulation.
+   - Loaded the 10 CSV files seen in the above database diagram into Databricks.
+   - Saved as PySpark DataFrames for easier versioning.
 
 2. **Data Cleaning**:
    - Standardized text columns.
@@ -43,28 +48,43 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 3. **Feature Engineering**:
    - Aggregated benefits and skills into interpretable formats.
    - One-hot encoded categorical variables.
-   - Engineered new features like `num_benefits` and principal components using PCA.
+   - Engineered new features like `num_benefits` and `salary_listed`
 
-4. **Final Dataset**:
+4. **Final Datasets**:
    - Created two modeling datasets:
      - **Views Dataset**: Focused on predicting views.
+         - **Rows**: 116,422
+         - **Columns**: 145
      - **Salary Dataset**: Focused on normalized salary predictions.
+         - **Rows**: 33,473
+         - **Columns**: 145
 
 ---
 
 ## Exploratory Data Analysis (EDA)
+
+![EDA 1](images/EDA%201.jpg)
+
 ### Key Insights
-- **Skewed View Distribution**: Most job postings receive fewer than 500 views, with a small percentage exceeding 50,000.
+- **Views Feature has a Right-skewed Distribution**: Most job postings receive fewer than 50 views, with a small percentage exceeding 50.
 - **Engagement Correlations**:
   - **Views ↔ Applications**: Strong positive correlation.
-  - **Follower Count ↔ Views**: Higher company follower counts correlate with more views.
-- **Feature Trends**:
-  - Remote jobs consistently outperform on-site jobs in terms of views.
-  - Job posts that list a salary receive more views.
+      - This led us to remove the `applications` feature to avoid collinearity with `views`
 
-### Visualizations
-1. **View Distribution**: Highlighted skewness in view counts.
-2. **Feature Relationships**: Bar plots showing average views by remote status, salary listing, and industry.
+![EDA 2](images/EDA%202.jpg)
+
+- **Feature Trends**:
+  - Majority of posts in the dataset occur during April 2024.
+  - The job industries with the largest number of posts include healthcare, tech, and professional services.
+  - The states with the largest number of posts are California, Texas, and New York.
+  - The most frequent skills listed in job postings include information technology, sales, and management.
+
+![EDA 3](images/EDA%203.jpg)
+
+- **Feature Relationships**:
+  - On average, tech, entertainment, and agriculture are the industries which receive the largest number of views.
+  - Job posting with strategy/planning, analyst, and product management skills listed have the largest number of views, on average.
+  - Including the salary as well as having remote work as an option both receive more views than not including them.
 
 ---
 
