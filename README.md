@@ -1,5 +1,7 @@
 # LinkedIn Job Posting Views Prediction
 
+![Title Slide](images/ML%20Ops%20Final%20Presentation%20Draft.jpg)
+
 ## Overview
 This project addresses a critical challenge for employers using LinkedIn: **maximizing job post visibility**. With thousands of posts uploaded daily, companies need insights to ensure their listings attract top talent. Using the **LinkedIn Job Postings (2023–2024)** dataset, we developed a **predictive model** to estimate the number of views a job posting will receive and identify key factors driving visibility.
 
