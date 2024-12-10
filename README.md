@@ -96,6 +96,8 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 - **EvidentlyAI**:
   - **Data Drift Monitoring**: Tracks shifts in feature distributions over time.
   - **Regression Performance**: Monitors MAE for new data against the training dataset.
+ 
+Test data was modified by changing features such as remote allowance and salary listing. The changed data was used with the deployed model, and observations were validated using EvidentlyAI's regression and data drift monitoring
 
 ---
 
@@ -104,7 +106,7 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
    - Accurately predicts the number of views per job posting.
    - Provides employers with actionable strategies to improve visibility.
 2. **Feature Importance**:
-   - Key drivers include salary listing, remote work options, and company follower count.
+   - 
 3. **Business Value**:
    - Enables companies to optimize job posts and improve engagement.
    - Offers insights for platforms like LinkedIn to enhance recommendation systems.
@@ -119,7 +121,9 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 ---
 
 ## Contributors
-- [Your Name]
-- [Team Member Name]
+- William DeForest
+- Linda Ji
+- Joon Park
+- Christina Song
 
 Feel free to reach out with questions or suggestions!
