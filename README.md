@@ -33,7 +33,7 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 
 ## Data Preparation
 ### Database Diagram
-![LinkedIn Job Posting Database Diagram](images\db_diagram.png)
+![LinkedIn Job Posting Database Diagram](images/db_diagram.png)
 
 ### Key Steps
 1. **Data Ingestion**:
