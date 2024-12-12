@@ -97,16 +97,16 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
   - Integrated PCA to capture variance efficiently.
   - Selected a subset of columns for feature engineering.
 
-[Feature Selection](images/features.jpg)
+![Feature Selection](images/features.jpg)
 
 ### Best Model
 - **LightGBM Regressor**: With the following parameters
-[LightGBM Model](images/lightgbm.jpg)
+![LightGBM Model](images/lightgbm.jpg)
 
 
 ### Evaluation Metrics
 - **MAE**: We chose to use MAE as our primary evaluation metric because it is less sensitive to outliers and skewed data compared to RMSE/MSE. This is important given the skewed distribution of views.
-[Evaluation Metrics](images/metrics.jpg)
+![Evaluation Metrics](images/metrics.jpg)
 
 
 ### Feature Importance
@@ -114,7 +114,7 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
    - **Remote_allowed**: Indicates higher demand for remote jobs.
    - **Pay_period_yearly**: Suggests that people are more interested in longer-term employment that can offer more financial security.
 
-[Feature Importance](images/shapely.jpg)
+![Feature Importance](images/shapely.jpg)
 
 ---
 
@@ -123,7 +123,7 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 - **Batch Deployment**: Provides predictions for multiple job postings at once, suitable for employers posting jobs in bulk.
 - **Implementation**: Deployed the best-performing model using Databricks' model registry.
 
-[Deployment](images/deployment.jpg)
+![Deployment](images/deployment.jpg)
 
 ---
 
@@ -176,7 +176,7 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 3. Real-time monitoring to continuously monitor model performance. 
 4. Providing a user interface with Streamlit.
 
-[Future Work](images/future_work.jpg)
+![Future Work](images/future_work.jpg)
 
 ---
 
