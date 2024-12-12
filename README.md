@@ -90,19 +90,31 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 
 ## Model Development
 ### Tools
+- **Train/Test Split**: Used an 80/20 train/test split. We provide the train data to AutoML and let it do its own train/val/test splitting. Meanwhile, we save the original 20% test set to use for testing after deployment.
 - **Databricks AutoML**: Automated experimentation with various algorithms.
 - **Modeling Pipeline**:
   - Handled multicollinearity with Variance Inflation Factor (VIF).
   - Integrated PCA to capture variance efficiently.
   - Selected a subset of columns for feature engineering.
 
-### Best Models
-- **SGD Regressor** (MAE): Most robust for view predictions.
-- **XGBoost Regressor** (R²): Performed well for goodness-of-fit metrics.
+[Feature Selection](images/features.jpg)
+
+### Best Model
+- **LightGBM Regressor**: With the following parameters
+[LightGBM Model](images/lightgbm.jpg)
+
 
 ### Evaluation Metrics
-- **MAE**: Measures average absolute prediction error.
-- **R²**: Captures the proportion of variance explained by the model.
+- **MAE**: We chose to use MAE as our primary evaluation metric because it is less sensitive to outliers and skewed data compared to RMSE/MSE. This is important given the skewed distribution of views.
+[Evaluation Metrics](images/metrics.jpg)
+
+
+### Feature Importance
+- **Shapely Feature Importance**:
+   - **Remote_allowed**: Indicates higher demand for remote jobs.
+   - **Pay_period_yearly**: Suggests that people are more interested in longer-term employment that can offer more financial security.
+
+[Feature Importance](images/shapely.jpg)
 
 ---
 
@@ -111,34 +123,60 @@ This project addresses a critical challenge for employers using LinkedIn: **maxi
 - **Batch Deployment**: Provides predictions for multiple job postings at once, suitable for employers posting jobs in bulk.
 - **Implementation**: Deployed the best-performing model using Databricks' model registry.
 
+[Deployment](images/deployment.jpg)
+
 ---
 
 ## Model Monitoring
 ### Tools
 - **EvidentlyAI**:
-  - **Data Drift Monitoring**: Tracks shifts in feature distributions over time.
-  - **Regression Performance**: Monitors MAE for new data against the training dataset.
- 
-Test data was modified by changing features such as remote allowance and salary listing. The changed data was used with the deployed model, and observations were validated using EvidentlyAI's regression and data drift monitoring
+   - Removed ~200 data points before load new test dataset for deployed model (23,262 → 23,070)
+   - Column Mapping:
+      - target variable: `views`
+      - prediction column: `prediction` to align with model output.
+   - Monitoring results: 
+      - slight difference in RMSE and MAE due to change in test data points but nothing noticeable.
+
+- **Swapped Two Features With High Feature Importance**:
+   - `remote_allowed`
+   - `days_listed`
+
+- **Data Stability & Drift**:
+   - Mean value stability and Out-of-range values.
+   - Data drift identified.
+
+- **Performance Drift**:
+   - No difference in performance identified between test_data and new_data. 
 
 ---
 
-## Results
-1. **Predictive Insights**:
-   - Accurately predicts the number of views per job posting.
-   - Provides employers with actionable strategies to improve visibility.
-2. **Feature Importance**:
-   - 
-3. **Business Value**:
-   - Enables companies to optimize job posts and improve engagement.
-   - Offers insights for platforms like LinkedIn to enhance recommendation systems.
+## Takeaways
+1. **AutoML**:
+   - Is a good tool for efficiently selecting a well-trained model
+2. **Databricks** is a great tool for:
+   - Streamlining the ML process
+   - Tracking model performance
+   - Reproducing the model
+   - Scaling
+3. **Model Performance**:
+   - MAE of 8.3 is not very accurate given that the average number of views received is 10.
+   - Therefore, more work needs to be done for our model to perform well enough to be used in a production setting.
+4. **Feature Importance**:
+   - `remote_allowed` was consistently one of the most influential features in determining how many views a posting received
+5. **Business Value**:
+   - While our model is not yet ready to be implemented, it has laid the ground work for further development and still has the potential to:
+      - Enable companies to optimize job posts and improve engagement.
+      - Offer insights for platforms like LinkedIn to enhance recommendation systems.
 
 ---
 
-## Next Steps
-1. Integrate the model into a user-facing application.
-2. Explore real-time predictions for dynamic job posting optimization.
-3. Enhance feature engineering to capture seasonality and temporal trends.
+## Future Work
+1. Expand on NLP analysis of text features like job description.
+2. Build a separate model by state or industry so model doesn't have to generalize across all features. 
+3. Real-time monitoring to continuously monitor model performance. 
+4. Providing a user interface with Streamlit.
+
+[Future Work](images/future_work.jpg)
 
 ---
 
